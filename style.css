@@ -1,3 +1,42 @@
-h1 {
-    color:red;
+#weather-card {
+  display: block;
+  margin: auto;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+  padding: 50px;
+  width: 80vw;
+  font-weight: 100;
+}
+#row-top {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 60px;
+}
+#col-center {
+  text-align: center;
+}
+#element-temperature {
+  font-size: 30px;
+  font-weight: 600;
+}
+#city {
+  font-size: 22px;
+  font-weight: 400;
+}
+#state {
+  margin: 10px 0px 10px;
+}
+.author {
+  font-family: Pt Mono;
+  text-align: center;
+}
+a {
+  color: #0b58ca;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #0b58ca;
+  cursor: pointer;
+  text-decoration: underline;
 }
