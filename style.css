@@ -1,5 +1,5 @@
 body {
-  background-color: #E8ECEF !important;
+  background-color: #e8ecef !important;
 }
 #weather-card {
   display: block;
@@ -16,6 +16,9 @@ body {
   justify-content: space-around;
   margin-bottom: 60px;
 }
+#row-bottom {
+  text-align: center;
+}
 #col-center {
   text-align: center;
 }
@@ -23,6 +26,7 @@ body {
 #col-left {
   font-size: 15px;
   padding: 5px;
+  white-space: nowrap;
 }
 #element-temperature {
   font-size: 30px;
@@ -34,21 +38,12 @@ body {
 }
 #state {
   margin: 10px 0px 10px;
+  text-transform: capitalize;
 }
 .author {
   font-family: Pt Mono;
   font-size: 15px;
   text-align: center;
-}
-#wind {
-  padding: 5% 1%;
-  margin: 2%;
-  white-space: nowrap;
-}
-#precipitation {
-  padding: 5% 1%;
-  margin: 2%;
-  white-space: nowrap;
 }
 
 a {

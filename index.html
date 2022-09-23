@@ -13,26 +13,26 @@
     <div id="weather-card" class="card">
       <div id="row-top" class="card-body">
         <div id="col-left">
-          <div id="numberdate">00/00/2000</div>
-          <div id="hourday">00:00 Weekday</div>
-          <div class="card">
-            <div class="card-body" id="precipitation">
-            Precipitation: %
-           </div>
-          </div>
-          <div class="card">
-            <div class="card-body" id="wind">
-            Wind: km/hr
+          <div id="numberdate">Date</div>
+          <div id="hourday">Time & Weekday</div>
+          <div>
+            <div id="wind">
+            Wind:
             </div>   
+          </div>
+          <div>
+            <div id="humidity">
+             Humidity:
+            </div>
           </div>
         </div>
         <div id="col-center">
-          <span id="element-temperature">-00°</span>
+          <span id="element-temperature">Temperature</span>
           <span id="element-farenheit">F°</span> | <span id="element-celsius">C°</span>
           <div id="city">City</div>
-          <div id="state">State</div>
+          <div id="state">Description</div>
           <div class="input-group input-group-sm mb-3">
-            <input placeholder="Enter your city here" type="text" class="form-control" aria-label="Enter your city here" aria-describedby="button-addon2" name="" id="">
+            <input placeholder="Enter your city here" type="text" class="form-control" aria-label="Enter your city here" aria-describedby="button-addon2" name="" id="search-city-input">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
           </div>
         </div>

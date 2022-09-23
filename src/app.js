@@ -22,3 +22,55 @@ let year = now.getFullYear();
 
 let numberdate = `${date}/${month}/${year}`;
 document.getElementById("numberdate").innerHTML = numberdate;
+
+let apiKey = "97c2f6a3b34509ac62090edc5d18d949";
+
+function handlePosition(position) {
+  let geolocationLatitude = position.coords.latitude;
+  let geolocationLongitude = position.coords.longitude;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${geolocationLatitude}&lon=${geolocationLongitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemp);
+}
+
+function displayTemp(response) {
+  let temperatureElement = document.querySelector("#element-temperature");
+  temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°`;
+  let cityElement = document.querySelector("#city");
+  cityElement.innerHTML = response.data.name;
+  let descriptionElement = document.querySelector("#state");
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/hr`;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = `Humidity: ${Math.round(
+    response.data.main.humidity
+  )} %`;
+}
+navigator.geolocation.getCurrentPosition(handlePosition);
+
+function handleSearchCity(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-city-input");
+  let definedCity1 = document.querySelector("#city");
+  definedCity1.innerHTML = `${searchInput.value}`;
+  let apiUrl2 = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl2).then(displaySearchCity);
+}
+
+function displaySearchCity(response) {
+  let temperatureElement = document.querySelector("#element-temperature");
+  temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°`;
+  let definedCity2 = document.querySelector("#city");
+  definedCity2.innerHTML = `${response.data.name}`;
+  let descriptionElement = document.querySelector("#state");
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/hr`;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = `Humidity: ${Math.round(
+    response.data.main.humidity
+  )} %`;
+}
+
+let searchCityButton = document.querySelector("#button-addon2");
+searchCityButton.addEventListener("click", handleSearchCity);
