@@ -1,3 +1,6 @@
+body {
+  background-color: #E8ECEF !important;
+}
 #weather-card {
   display: block;
   margin: auto;
@@ -6,6 +9,7 @@
   padding: 50px;
   width: 80vw;
   font-weight: 100;
+  border-color: #dee2e6;
 }
 #row-top {
   display: flex;
@@ -14,6 +18,11 @@
 }
 #col-center {
   text-align: center;
+}
+
+#col-left {
+  font-size: 15px;
+  padding: 5px;
 }
 #element-temperature {
   font-size: 30px;
@@ -28,8 +37,20 @@
 }
 .author {
   font-family: Pt Mono;
+  font-size: 15px;
   text-align: center;
 }
+#wind {
+  padding: 5% 1%;
+  margin: 2%;
+  white-space: nowrap;
+}
+#precipitation {
+  padding: 5% 1%;
+  margin: 2%;
+  white-space: nowrap;
+}
+
 a {
   color: #0b58ca;
   text-decoration: underline;
