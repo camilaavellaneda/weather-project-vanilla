@@ -1,5 +1,5 @@
 body {
-  background-color: #e8ecef !important;
+  background-color: #fefbf1 !important;
 }
 #weather-card {
   display: block;
@@ -14,13 +14,31 @@ body {
 #row-top {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 #row-bottom {
   text-align: center;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+}
+
+#row-middle {
+  display: flex;
+  justify-content: center;
+}
+
+#button-addon2 {
+  width: 10px;
+  margin-left: 10px;
+}
+
 #col-center {
   text-align: center;
+  white-space: nowrap;
 }
 
 #col-left {
@@ -55,4 +73,14 @@ a:hover {
   color: #0b58ca;
   cursor: pointer;
   text-decoration: underline;
+}
+
+#element-celsius:hover {
+  color: #0b58ca;
+  cursor: pointer;
+}
+
+#element-farenheit:hover {
+  color: #0b58ca;
+  cursor: pointer;
 }

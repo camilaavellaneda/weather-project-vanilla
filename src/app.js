@@ -36,6 +36,7 @@ function displayTemp(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("#element-temperature");
   temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°`;
+  celsiusTemperature = response.data.main.temp;
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
   let countryElement = document.querySelector("#country");
@@ -67,6 +68,7 @@ function handleSearchCity(event) {
 function displaySearchCity(response) {
   let temperatureElement = document.querySelector("#element-temperature");
   temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°`;
+  celsiusTemperature = response.data.main.temp;
   let definedCity2 = document.querySelector("#city");
   let countryElement = document.querySelector("#country");
   countryElement.innerHTML = response.data.sys.country;
@@ -87,3 +89,31 @@ function displaySearchCity(response) {
 
 let searchCityButton = document.querySelector("#button-addon2");
 searchCityButton.addEventListener("click", handleSearchCity);
+
+function displayFarenheitTemperature(event) {
+  event.preventDefault();
+  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let definedTemperature = document.querySelector("#element-temperature");
+  definedTemperature.innerHTML = Math.round(farenheitTemperature);
+}
+
+let unitConversionButtonFarenheit =
+  document.querySelector("#element-farenheit");
+unitConversionButtonFarenheit.addEventListener(
+  "click",
+  displayFarenheitTemperature
+);
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let definedTemperature = document.querySelector("#element-temperature");
+  definedTemperature.innerHTML = Math.round(celsiusTemperature);
+}
+
+let unitConversionButtonCelsius = document.querySelector("#element-celsius");
+unitConversionButtonCelsius.addEventListener(
+  "click",
+  displayCelsiusTemperature
+);
+
+let celsiusTemperature = null;
