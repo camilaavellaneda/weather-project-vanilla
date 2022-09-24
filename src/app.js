@@ -33,10 +33,13 @@ function handlePosition(position) {
 }
 
 function displayTemp(response) {
+  console.log(response.data);
   let temperatureElement = document.querySelector("#element-temperature");
   temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°`;
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
+  let countryElement = document.querySelector("#country");
+  countryElement.innerHTML = response.data.sys.country;
   let descriptionElement = document.querySelector("#state");
   descriptionElement.innerHTML = response.data.weather[0].description;
   let windElement = document.querySelector("#wind");
@@ -45,6 +48,10 @@ function displayTemp(response) {
   humidityElement.innerHTML = `Humidity: ${Math.round(
     response.data.main.humidity
   )} %`;
+  let weatherIconElement = document.querySelector("#weather-icon");
+  let weatherIconData = response.data.weather[0].icon;
+  let weatherIconUrl = `http://openweathermap.org/img/wn/${weatherIconData}@2x.png`;
+  weatherIconElement.innerHTML = `<img src="${weatherIconUrl}" />`;
 }
 navigator.geolocation.getCurrentPosition(handlePosition);
 
@@ -61,6 +68,8 @@ function displaySearchCity(response) {
   let temperatureElement = document.querySelector("#element-temperature");
   temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°`;
   let definedCity2 = document.querySelector("#city");
+  let countryElement = document.querySelector("#country");
+  countryElement.innerHTML = response.data.sys.country;
   definedCity2.innerHTML = `${response.data.name}`;
   let descriptionElement = document.querySelector("#state");
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -70,6 +79,10 @@ function displaySearchCity(response) {
   humidityElement.innerHTML = `Humidity: ${Math.round(
     response.data.main.humidity
   )} %`;
+  let weatherIconElement = document.querySelector("#weather-icon");
+  let weatherIconData = response.data.weather[0].icon;
+  let weatherIconUrl = `http://openweathermap.org/img/wn/${weatherIconData}@2x.png`;
+  weatherIconElement.innerHTML = `<img src="${weatherIconUrl}" />`;
 }
 
 let searchCityButton = document.querySelector("#button-addon2");
