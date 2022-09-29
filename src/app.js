@@ -54,7 +54,35 @@ function displayTemp(response) {
   let weatherIconUrl = `http://openweathermap.org/img/wn/${weatherIconData}@2x.png`;
   weatherIconElement.innerHTML = `<img src="${weatherIconUrl}" />`;
 }
+
+function handlePositionForecast(position) {
+  let geolocationLatitude = position.coords.latitude;
+  let geolocationLongitude = position.coords.longitude;
+  let apiUrl3 = `https://api.openweathermap.org/data/2.5/onecall?lat=${geolocationLatitude}&lon=${geolocationLongitude}&exclude=currently,minutely,hourly,alerts&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl3).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
+  let forecastDate = document.querySelector("#weather-forecast-date");
+  forecastDate.innerHTML = response.data.daily[0].dt;
+  let forecastIcon = document.querySelector("#forecast-weather-icon");
+  let forecastIconData = response.data.daily[0].weather[0].icon;
+  let forecastIconUrl = `http://openweathermap.org/img/wn/${forecastIconData}@2x.png`;
+  forecastIcon.innerHTML = `<img src="${forecastIconUrl}" />`;
+  let forecastTemperatureMax = document.querySelector(
+    "#weather-forecast-temperature-max"
+  );
+  forecastTemperatureMax = response.data.daily[0].temp.max;
+  let forecastTemperatureMin = document.querySelector(
+    "#weather-forecast-temperature-min"
+  );
+  forecastTemperatureMin.innerHTML = response.data.daily[0].temp.max;
+}
+
 navigator.geolocation.getCurrentPosition(handlePosition);
+
+navigator.geolocation.getCurrentPosition(handlePositionForecast);
 
 function handleSearchCity(event) {
   event.preventDefault();

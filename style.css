@@ -16,9 +16,6 @@ body {
   justify-content: space-around;
   margin-bottom: 10px;
 }
-#row-bottom {
-  text-align: center;
-}
 
 form {
   display: flex;
@@ -46,6 +43,26 @@ form {
   padding: 5px;
   white-space: nowrap;
 }
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+  color: #000000;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+  opacity: 0.5;
+}
+
+.weather-forecast-temperature-min {
+  opacity: 0.5;
+}
+
+.weather-forecast-temperatures {
+  font-size: 13px;
+}
+
 #element-temperature {
   font-size: 30px;
   font-weight: 600;
