@@ -62,22 +62,51 @@ function handlePositionForecast(position) {
   axios.get(apiUrl3).then(displayForecast);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6)
+      forecastHTML =
+        forecastHTML +
+        `
+          <div class="col-2">
+            <div class="weather-forecast-date" id="weather-forecast-date">${formatDay(
+              forecastDay.dt
+            )}</div>
+            <img
+              src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png"
+              alt=""
+              width="40"
+              id="forecast-weather-icon"
+            />
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max" id="weather-forecast-temperature-max">${Math.round(
+                forecastDay.temp.max
+              )}°</span>
+              <span class="weather-forecast-temperature-min" id="weather-forecast-temperature-min">${Math.round(
+                forecastDay.temp.min
+              )}° </span>
+            </div>
+          </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+
   console.log(response.data);
-  let forecastDate = document.querySelector("#weather-forecast-date");
-  forecastDate.innerHTML = response.data.daily[0].dt;
-  let forecastIcon = document.querySelector("#forecast-weather-icon");
-  let forecastIconData = response.data.daily[0].weather[0].icon;
-  let forecastIconUrl = `http://openweathermap.org/img/wn/${forecastIconData}@2x.png`;
-  forecastIcon.innerHTML = `<img src="${forecastIconUrl}" />`;
-  let forecastTemperatureMax = document.querySelector(
-    "#weather-forecast-temperature-max"
-  );
-  forecastTemperatureMax = response.data.daily[0].temp.max;
-  let forecastTemperatureMin = document.querySelector(
-    "#weather-forecast-temperature-min"
-  );
-  forecastTemperatureMin.innerHTML = response.data.daily[0].temp.max;
 }
 
 navigator.geolocation.getCurrentPosition(handlePosition);
@@ -113,10 +142,19 @@ function displaySearchCity(response) {
   let weatherIconData = response.data.weather[0].icon;
   let weatherIconUrl = `http://openweathermap.org/img/wn/${weatherIconData}@2x.png`;
   weatherIconElement.innerHTML = `<img src="${weatherIconUrl}" />`;
+
+  obtainForecast(response.data.coord);
+
 }
 
 let searchCityButton = document.querySelector("#button-addon2");
 searchCityButton.addEventListener("click", handleSearchCity);
+
+function obtainForecast(coordinates) {
+  let apiUrl3 = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=currently,minutely,hourly,alerts&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl3).then(displayForecast)
+}
+
 
 function displayFarenheitTemperature(event) {
   event.preventDefault();
